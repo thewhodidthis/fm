@@ -1,27 +1,21 @@
 'use strict';
 
-var createVoice = function (audio, base, ratio, pimp) {
-  if ( audio === void 0 ) audio = new AudioContext();
-  if ( base === void 0 ) base = 440;
-  if ( ratio === void 0 ) ratio = 1;
-  if ( pimp === void 0 ) pimp = 80;
+const createVoice = ({ context = new AudioContext(), frequency = 440, ratio = 1, depth = 80 } = {}) => {
+  const { currentTime } = context;
+  const carrier = { vco: context.createOscillator(), vca: context.createGain() };
 
-  var currentTime = audio.currentTime;
-  var carrier = { vco: audio.createOscillator(), vca: audio.createGain() };
-
-  carrier.vco.frequency.setValueAtTime(base, currentTime);
+  carrier.vco.frequency.setValueAtTime(frequency, currentTime);
   carrier.vco.connect(carrier.vca);
 
-  var modulator = { vco: audio.createOscillator(), vca: audio.createGain() };
+  const modulator = { vco: context.createOscillator(), vca: context.createGain() };
 
-  modulator.vco.frequency.setValueAtTime(base * ratio, currentTime);
+  modulator.vco.frequency.setValueAtTime(frequency * ratio, currentTime);
   modulator.vco.connect(modulator.vca);
 
-  modulator.vca.gain.setValueAtTime(pimp, currentTime);
+  modulator.vca.gain.setValueAtTime(depth, currentTime);
   modulator.vca.connect(carrier.vco.frequency);
 
-  return { carrier: carrier, modulator: modulator }
+  return { carrier, modulator }
 };
 
 module.exports = createVoice;
-
