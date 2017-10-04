@@ -4,6 +4,5 @@
 ### Setup
 ```sh
 # Fetch from github directly
-npm install thewhodidthis/syth
+npm install thewhodidthis/synth
 ```
-
