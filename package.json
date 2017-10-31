@@ -14,7 +14,7 @@
   },
   "scripts": {
     "pretest": "eslint test.js",
-    "test": "browserify test | buble | kpow",
+    "test": "rollup -c node:x -f iife test.js | kpow",
     "prestart": "eslint index.es",
     "start": "rollup -f cjs index.es > index.js",
     "preexample": "eslint example/index.es",
@@ -33,14 +33,17 @@
     "@thewhodidthis/binocular": "github:thewhodidthis/binocular",
     "@thewhodidthis/eslint-config": "latest",
     "@thewhodidthis/trigger": "github:thewhodidthis/trigger",
-    "browserify": "latest",
     "buble": "latest",
+    "cutaway": "latest",
     "eslint": "latest",
     "kpow": "latest",
     "rollup": "latest",
     "rollup-config-x": "latest",
-    "tape": "latest"
+    "tapeless": "latest"
   },
+  "keywords": [
+    "audio"
+  ],
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
   "license": "Unlicense"
 }
