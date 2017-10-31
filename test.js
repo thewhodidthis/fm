@@ -1,27 +1,22 @@
-'use strict'
+import 'cutaway'
+import { assert, report } from 'tapeless'
+import createSynth from './index.es'
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext
 
-const kpow = require('kpow')
-const test = require('tape')
-const createSynth = require('./')
+const { ok } = assert
+const { carrier, modulator } = createSynth()
 
-kpow()
+ok(carrier.hasOwnProperty('vco'), 'features a carrier vco', 'will default')
+ok(carrier.vco instanceof OscillatorNode, 'which is an OscillatorNode')
 
-test('will default', (t) => {
-  const { carrier, modulator } = createSynth()
+ok(carrier.hasOwnProperty('vca'), 'features a carrier vca')
+ok(carrier.vca instanceof GainNode, 'which is a GainNode')
 
-  t.ok(carrier.hasOwnProperty('vco'))
-  t.ok(carrier.vco instanceof OscillatorNode)
+ok(modulator.hasOwnProperty('vco'), 'features a modulator vco')
+ok(modulator.vco instanceof OscillatorNode, 'which is an OscillatorNode')
 
-  t.ok(carrier.hasOwnProperty('vca'))
-  t.ok(carrier.vca instanceof GainNode)
+ok(modulator.hasOwnProperty('vca'), 'features a modulator vca')
+ok(modulator.vca instanceof GainNode, 'which is a GainNode')
 
-  t.ok(modulator.hasOwnProperty('vco'))
-  t.ok(modulator.vco instanceof OscillatorNode)
-
-  t.ok(modulator.hasOwnProperty('vca'))
-  t.ok(modulator.vca instanceof GainNode)
-
-  t.end()
-})
+report()
