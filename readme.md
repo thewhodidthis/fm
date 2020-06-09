@@ -1,7 +1,12 @@
-> Helps navigate FM sound
+## about
 
-### Setup
+Helps navigate FM sound.
+
+## setup
+
+Fetch the latest version from GitHub directly:
+
 ```sh
-# Fetch latest from github
-npm i thewhodidthis/synth
+# Contains ES and CJS modules both
+npm install thewhodidthis/synth
 ```
