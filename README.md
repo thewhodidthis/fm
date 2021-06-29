@@ -4,9 +4,9 @@ Helps navigate FM sound.
 
 ## setup
 
-Fetch the latest version from GitHub directly:
+Download from GitHub directly:
 
 ```sh
-# Contains ES and CJS modules both
+# Add to package.json
 npm install thewhodidthis/synth
 ```
